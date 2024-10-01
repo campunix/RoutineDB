@@ -8,6 +8,7 @@ TRUNCATE TABLE Departments;
 TRUNCATE TABLE Semesters;
 TRUNCATE TABLE Rooms;
 TRUNCATE TABLE TimeSlots;
+TRUNCATE TABLE Preferences;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -16,12 +17,12 @@ INSERT INTO Departments (DepartmentName, DepartmentCode) VALUES
 ('Computer Science and Engineering', 'CSE');
 
 -- Insert dummy data into the Professors Table with ShortName
-INSERT INTO Professors (FirstName, LastName, ShortName, DepartmentID, Email, Phone) VALUES
-('John', 'Doe', 'JD', 1, 'jdoe@example.com', '123-456-7890'),
-('Jane', 'Smith', 'JS', 1, 'jsmith@example.com', '098-765-4321'),
-('Michael', 'Brown', 'MB', 1, 'mbrown@example.com', '234-567-8901'),
-('Emily', 'Davis', 'ED', 1, 'edavis@example.com', '345-678-9012'),
-('David', 'Wilson', 'D', 1, 'dwilson@example.com', '456-789-0123');
+INSERT INTO Professors (FirstName, LastName, ShortName, DepartmentID, Email, Phone, Status) VALUES
+('John', 'Doe', 'JD', 1, 'jdoe@example.com', '123-456-7890', 'Active'),
+('Jane', 'Smith', 'JS', 1, 'jsmith@example.com', '098-765-4321', 'Active'),
+('Michael', 'Brown', 'MB', 1, 'mbrown@example.com', '234-567-8901', 'Active'),
+('Emily', 'Davis', 'ED', 1, 'edavis@example.com', '345-678-9012', 'Active'),
+('David', 'Wilson', 'D', 1, 'dwilson@example.com', '456-789-0123', 'Active');
 
 -- Insert dummy data into the Semesters Table with SemesterCode
 INSERT INTO Semesters (SemesterName, SemesterCode) VALUES
@@ -64,13 +65,13 @@ INSERT INTO SemestersCourses (SemesterID, CourseID) VALUES
 (3, 6);
 
 -- Insert dummy data into the Rooms Table with RoomType
-INSERT INTO Rooms (RoomNumber, Capacity, RoomType) VALUES
-('101', 30, 'Classroom'),
-('102', 40, 'Classroom'),
-('201', 20, 'Lab'),
-('202', 25, 'Lab'),
-('301', 50, 'Classroom'),
-('302', 15, 'Lab');
+INSERT INTO Rooms (RoomNumber, Capacity, RoomType, Status) VALUES
+('101', 30, 'Classroom', 'Available'),
+('102', 40, 'Classroom', 'Available'),
+('201', 20, 'Lab', 'Available'),
+('202', 25, 'Lab', 'Available'),
+('301', 50, 'Classroom', 'Available'),
+('302', 15, 'Lab', 'Available');
 
 -- Insert dummy data to TimeSlots Table
 INSERT INTO TimeSlots (DayOfWeek, StartTime, EndTime) VALUES
@@ -108,6 +109,3 @@ INSERT INTO TimeSlots (DayOfWeek, StartTime, EndTime) VALUES
 ('Thursday', '11:50:00', '13:10:00'),
 ('Thursday', '14:00:00', '15:20:00'),
 ('Thursday', '15:25:00', '16:45:00');
-
-
-
