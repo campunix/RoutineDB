@@ -8,8 +8,10 @@ The following steps are included in the script to set up the database.
 # 1. Create the Database
 The database UniversityRoutineDB is created (if it doesn't already exist) using the following command:
 
+```sql
 DROP DATABASE IF EXISTS UniversityRoutineDB;
 CREATE DATABASE UniversityRoutineDB;
+```
 
 # 2. Use the Database
 USE UniversityRoutineDB;
