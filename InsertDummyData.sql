@@ -25,24 +25,24 @@ INSERT INTO Professors (FirstName, LastName, ShortName, DepartmentID, Email, Pho
 ('David', 'Wilson', 'D', 1, 'dwilson@example.com', '456-789-0123', 'Active');
 
 -- Insert dummy data into the Semesters Table with SemesterCode
-INSERT INTO Semesters (SemesterName, SemesterCode) VALUES
-('First Year, First Semester', '1--1'),
-('First Year, Second Semester', '1--2'),
-('Second Year, First Semester', '2--1'),
-('Second Year, Second Semester', '2--2'),
-('Third Year, First Semester', '3--1'),
-('Third Year, Second Semester', '3--2'),
-('Fourth Year, First Semester', '4--1'),
-('Fourth Year, Second Semester', '4--2');
+INSERT INTO Semesters (SemesterName, SemesterCode, IsActive) VALUES
+('First Year, First Semester', '1--1', TRUE),
+('First Year, Second Semester', '1--2', FALSE),
+('Second Year, First Semester', '2--1', TRUE),
+('Second Year, Second Semester', '2--2', FALSE),
+('Third Year, First Semester', '3--1', TRUE),
+('Third Year, Second Semester', '3--2', FALSE),
+('Fourth Year, First Semester', '4--1', TRUE),
+('Fourth Year, Second Semester', '4--2', FALSE);
 
 -- Insert dummy data into the Courses Table with ShortName and CourseType
-INSERT INTO Courses (CourseName, CourseCode, DepartmentID, Credits, CourseType) VALUES
-('Introduction to Programming', 'CSE101', 1, 3, 'Theory'),
-('Data Structures', 'CSE102', 1, 3, 'Theory'),
-('Computer Networks Lab', 'CSE201', 1, 1, 'Lab'),
-('Database Management Systems', 'CSE202', 1, 3, 'Theory'),
-('Operating Systems Lab', 'CSE203', 1, 1, 'Lab'),
-('Algorithms', 'CSE204', 1, 3, 'Theory');
+INSERT INTO Courses (CourseName, CourseCode, DepartmentID, Credits, CourseType, IsActive) VALUES
+('Introduction to Programming', 'CSE101', 1, 3, 'Theory', TRUE),
+('Data Structures', 'CSE102', 1, 3, 'Theory', TRUE),
+('Computer Networks Lab', 'CSE201', 1, 1, 'Lab', TRUE),
+('Database Management Systems', 'CSE202', 1, 3, 'Theory', TRUE),
+('Operating Systems Lab', 'CSE203', 1, 1, 'Lab', TRUE),
+('Algorithms', 'CSE204', 1, 3, 'Theory', TRUE);
 
 -- Insert dummy data into the CourseProfessors Table
 INSERT INTO CourseProfessors (CourseID, ProfessorID) VALUES
