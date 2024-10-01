@@ -1,5 +1,5 @@
 -- 1. Create the Database
-DROP DATABASE universityroutinedb;
+DROP DATABASE IF EXISTS universityroutinedb;
 CREATE DATABASE UniversityRoutineDB;
 
 -- 2. Use the Database
@@ -22,6 +22,7 @@ CREATE TABLE Professors (
     DepartmentID INT,
     Email VARCHAR(100),
     Phone VARCHAR(20),
+    Status ENUM('Active', 'LPR', 'Leave', 'PRL', 'Retired') DEFAULT 'Active',
     FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
 );
 
@@ -66,7 +67,8 @@ CREATE TABLE Rooms (
     RoomID INT PRIMARY KEY AUTO_INCREMENT,
     RoomNumber VARCHAR(10) NOT NULL,
     Capacity INT NOT NULL,
-    RoomType ENUM('Classroom', 'Lab') NOT NULL -- Specifies whether the room is a classroom or a lab
+    RoomType ENUM('Classroom', 'Lab') NOT NULL, -- Specifies whether the room is a classroom or a lab
+    Status ENUM('Available', 'Not Available') DEFAULT 'Available'
 );
 
 -- 8. Create the Time Slots Table
@@ -77,7 +79,17 @@ CREATE TABLE TimeSlots (
     EndTime TIME NOT NULL
 );
 
--- 9. Create the Schedules Table
+-- 9. Create the Preference Table
+CREATE TABLE Preferences (
+    PreferenceID INT PRIMARY KEY AUTO_INCREMENT,
+    ProfessorID INT,
+    TimeSlotID INT,
+    Preferred BOOLEAN DEFAULT TRUE, -- Indicates if it's a preferred time slot
+    FOREIGN KEY (ProfessorID) REFERENCES Professors(ProfessorID),
+    FOREIGN KEY (TimeSlotID) REFERENCES TimeSlots(TimeSlotID)
+);
+
+-- 10. Create the Schedules Table
 CREATE TABLE Schedules (
     ScheduleID INT PRIMARY KEY AUTO_INCREMENT,
     CourseID INT,
