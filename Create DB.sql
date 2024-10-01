@@ -30,7 +30,8 @@ CREATE TABLE Professors (
 CREATE TABLE Semesters (
     SemesterID INT PRIMARY KEY AUTO_INCREMENT,
     SemesterName VARCHAR(50) NOT NULL,
-    SemesterCode VARCHAR(5) NOT NULL
+    SemesterCode VARCHAR(5) NOT NULL,
+    IsActive BOOLEAN DEFAULT FALSE -- Indicates if the semester is currently running
 );
 
 -- 6. Create the Courses Table
@@ -41,6 +42,7 @@ CREATE TABLE Courses (
     DepartmentID INT,
     Credits INT,
     CourseType ENUM('Theory', 'Lab') NOT NULL, -- Specifies the type of course
+    IsActive BOOLEAN DEFAULT FALSE, -- Indicates if the course is currently active
     FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
 );
 
