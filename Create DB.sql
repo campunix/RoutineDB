@@ -73,7 +73,16 @@ CREATE TABLE Rooms (
     Status ENUM('Available', 'Not Available') DEFAULT 'Available'
 );
 
--- 8. Create the Time Slots Table
+-- 8. Create the Course Room Table
+CREATE TABLE CourseRoom (
+    CourseRoomID INT AUTO_INCREMENT PRIMARY KEY,
+    CourseID INT NOT NULL,
+    RoomID INT NOT NULL,
+    CONSTRAINT fk_course FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    CONSTRAINT fk_room FOREIGN KEY (RoomID) REFERENCES Rooms(RoomID)
+);
+
+-- 9. Create the Time Slots Table
 CREATE TABLE TimeSlots (
     TimeSlotID INT PRIMARY KEY AUTO_INCREMENT,
     DayOfWeek ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
@@ -81,7 +90,7 @@ CREATE TABLE TimeSlots (
     EndTime TIME NOT NULL
 );
 
--- 9. Create the Preference Table
+-- 10. Create the Preference Table
 CREATE TABLE Preferences (
     PreferenceID INT PRIMARY KEY AUTO_INCREMENT,
     ProfessorID INT,
@@ -91,7 +100,7 @@ CREATE TABLE Preferences (
     FOREIGN KEY (TimeSlotID) REFERENCES TimeSlots(TimeSlotID)
 );
 
--- 10. Create the Schedules Table
+-- 11. Create the Schedules Table
 CREATE TABLE Schedules (
     ScheduleID INT PRIMARY KEY AUTO_INCREMENT,
     CourseID INT,
