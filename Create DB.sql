@@ -82,32 +82,22 @@ CREATE TABLE CourseRoom (
     CONSTRAINT fk_room FOREIGN KEY (RoomID) REFERENCES Rooms(RoomID)
 );
 
--- 9. Create the Time Slots Table
-CREATE TABLE TimeSlots (
-    TimeSlotID INT PRIMARY KEY AUTO_INCREMENT,
-    DayOfWeek ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
-    StartTime TIME NOT NULL,
-    EndTime TIME NOT NULL
-);
-
--- 10. Create the Preference Table
+-- 9. Create the Preference Table
 CREATE TABLE Preferences (
     PreferenceID INT PRIMARY KEY AUTO_INCREMENT,
     ProfessorID INT,
-    TimeSlotID INT,
-    Preferred BOOLEAN DEFAULT TRUE, -- Indicates if it's a preferred time slot
-    FOREIGN KEY (ProfessorID) REFERENCES Professors(ProfessorID),
-    FOREIGN KEY (TimeSlotID) REFERENCES TimeSlots(TimeSlotID)
+    DayHalf ENUM('1st Half', '2nd Half'), -- Indicates first or second half of the day
+    Preferred BOOLEAN DEFAULT TRUE,       -- Indicates if it's a preferred half
+    FOREIGN KEY (ProfessorID) REFERENCES Professors(ProfessorID)
 );
 
--- 11. Create the Schedules Table
+-- 10. Create the Schedules Table
 CREATE TABLE Schedules (
     ScheduleID INT PRIMARY KEY AUTO_INCREMENT,
     CourseID INT,
-    TimeSlotID INT,
+    TimeSlot INT,
     RoomID INT,
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
-    FOREIGN KEY (TimeSlotID) REFERENCES TimeSlots(TimeSlotID),
     FOREIGN KEY (RoomID) REFERENCES Rooms(RoomID),
     UNIQUE (CourseID, TimeSlotID, RoomID) -- Prevents scheduling conflicts
 );
